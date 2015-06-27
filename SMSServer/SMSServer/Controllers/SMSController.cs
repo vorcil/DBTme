@@ -5,25 +5,30 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Azure;
+using SMSServer.Models;
 using Twilio;
 
 namespace SMSServer.Controllers
 {
     public class SMSController : ApiController
     {
-
+        /// <summary>
+        /// Sends a single SMS message
+        /// </summary>
+        /// <param name="message">The message to be sent</param>
+        /// <returns>Response Code OK</returns>
         [HttpPost]
-        public void SendMessage(Message message)
+        public IHttpActionResult Send(MessageModel message)
         {
-            string AccountSid = "ACbc5892a55d03da310a1ab2663804d3d9";
-            string AuthToken = "77f97a04db323c03086cd93a363d606a";
+            string AccountSid = CloudConfigurationManager.GetSetting("AccountSid");
+            string AuthToken = CloudConfigurationManager.GetSetting("AuthToken");
+
             var twilio = new TwilioRestClient(AccountSid, AuthToken);
-            var numbers = CloudConfigurationManager.GetSetting("ReminderNumbers").Split(',');
-            foreach (var number in numbers)
-            {
-                var twilioMessage = twilio.SendMessage(message., number, "Do some YOMO!");
-                Console.WriteLine(twilioMessage.Sid);
-            }
+
+            var twilioMessage = twilio.SendMessage(message.FromName, message.ToNumber, message.Text);
+            Console.WriteLine(twilioMessage.Sid);
+
+            return Ok();
         }
     }
 }
