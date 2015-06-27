@@ -7,7 +7,6 @@ namespace SMSServer.Models
 {
     public class MessageModel
     {
-        public string FromName { get; set; }
         public string Text { get; set; }
         public string ToNumber { get; set; }
     }

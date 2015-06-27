@@ -22,10 +22,11 @@ namespace SMSServer.Controllers
         {
             string AccountSid = CloudConfigurationManager.GetSetting("AccountSid");
             string AuthToken = CloudConfigurationManager.GetSetting("AuthToken");
+            string FromNumber = CloudConfigurationManager.GetSetting("FromNumber");
 
             var twilio = new TwilioRestClient(AccountSid, AuthToken);
 
-            var twilioMessage = twilio.SendMessage(message.FromName, message.ToNumber, message.Text);
+            var twilioMessage = twilio.SendMessage(FromNumber, message.ToNumber, message.Text);
             Console.WriteLine(twilioMessage.Sid);
 
             return Ok();

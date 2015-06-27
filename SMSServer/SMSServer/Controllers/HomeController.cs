@@ -14,5 +14,11 @@ namespace SMSServer.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult TestMessageSend()
+        {
+            return View();
+        }
     }
 }
