@@ -1,0 +1,8 @@
+[
+	{"id" : "2", "width": 100, "height": 100,"x": 200,"y": 0, "position" : "patient", "image" : "bin/jk.png" ,"name" : "John Key", "image2" : "bin/blue1.png"},
+	{"id" : "2", "width": 100, "height": 100,"x": 200,"y": 400, "position" : "patient", "image" : "bin/jk.png" ,"name" : "John Key", "image2" : "bin/blue1.png"},
+	{"id" : "1", "width": 100, "height": 100,"x": 200,"y": 580, "position" : "clinician", "image" : "bin/doc.png","name" : "clinician1", "image2" : "bin/green1.png"},
+	{"id" : "2", "width": 100, "height": 100,"x": 200,"y": 750, "position" : "patient", "image" : "bin/jk.png" ,"name" : "John Key", "image2" : "bin/blue2.png"}
+
+	
+]

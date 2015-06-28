@@ -1,14 +1,6 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Tahoma, sanserif;
-  font-weight: normal;
-}
-
 /* Font styles for D3 text elements */
-.text {
+
+.normal {
   font-size: 25px;
 }
 
@@ -22,10 +14,62 @@ body {
   font-weight: bold;
  }
 
+* {
+  box-sizing: border-box;
+}
+
 a:hover {
   text-decoration:none;
+}
+
+body {
+  font-family: Tahoma, sanserif;
+  font-weight: normal;
+}
+
+.floating-header {
+  background-color: #eef4ed;
+  padding: 2em;
+}
+
+/* Bootstrap CSS */
+.btn-primary {
+  color: white;
+}
+
+#content-body {
+  width:100%;
+  background-color:yellow;
+}
+
+.row .box-link {
+  padding: 1em;
+  border: 1px grey solid;
+  border-radius: 2px;
+  font-size: 1.5em;
 }
 
 .row .glyphicon { float:right; }
 
 .clickable { cursor:pointer; }
+
+[id~=messages] {
+  background-color:pink;
+}
+
+[id~=logcall] {
+  background-color: #eeeeff;
+}
+
+[id~=handbook] {
+  background-color: yellow;
+}
+
+[id~=patients] {
+  background-color:grey;
+}
+
+/* Form CSS */
+.btn {
+  display:block;
+}

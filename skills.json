@@ -1,0 +1,8 @@
+[ 
+{"id" : 1, "image":"bin/skill1.png"},
+{"id" : 2, "image":"bin/skill2.png"},
+{"id" : 3, "image":"bin/skill3.png"},
+{"id" : 4, "image":"bin/skill4.png"},
+{"id" : 5, "image":"bin/skill5.png"}
+
+]

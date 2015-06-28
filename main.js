@@ -2,17 +2,21 @@ initializeMessage();
 
 /*The initial DBT messaging system*/
 function initializeMessage(){
+d3.json("cellphone.json", function(data){
+jsonCell=data;
+console.log(jsonCell[0].cellnumber);
 /*Call the patient JSON list and match data to dropdown box of users */
 //d3.json("patient.json", function(data){
 	/*Global Variables*/
 	width = 500, colour1="white", colour2="steelblue";
 	
+	var textmessage ="This is a text message for somebody from the audience; One skill to try: Pros and Cons; let me know how you get on. Dion.";
+	var cellNumber="";
 	var body = d3.select("body");
 	/*The main workspace for the message box*/
 	var svg = body.append("svg")
 		.attr("height", 1000)
 		.attr("width", 1500);
-		console.log("getting here");
 	var mainBox = svg.append("svg")
 		.attr("width", 1500).attr("height", 1000);
 		
@@ -33,31 +37,97 @@ function initializeMessage(){
 		.attr("fill", "white").attr("stroke", "black").attr("stroke-width", 0.2)
 		.on("mouseover", function(d) {mouseoverChange(d3.select(this))})
 		.on("mouseout", function(d) {mouseoutChange(d3.select(this))});
+	
+	var submit = mainBox.append("image")
+		.attr("xlink:href", "bin/sendnext.png")
+		.attr("x", 100).attr("y", 780).attr("height", 50).attr("width", 150)
+		.on("click", function(d) {
 		
+			
+	
+	var message = new Object();
+	message.ToNumber = jsonCell.cellnumber;
+	message.Text = textmessage;
+	$.post("http://dbtsms.azurewebsites.net/api/SMS", message);
+	
+			
+		
+		
+		
+		});
 	var messageBox = mainBox.append("rect")
 		.attr("x", 100).attr("y", 280).attr("rx", 5).attr("ry", 5)
 		.attr("height", 350).attr("width", width)
 		.attr("fill", "white").attr("stroke", "black").attr("stroke-width", 0.2)
 		.on("mouseover", function(d) {mouseoverChange(d3.select(this))})
-		.on("mouseout", function(d) {mouseoutChange(d3.select(this))});
+		.on("mouseout", function(d) {mouseoutChange(d3.select(this))})
+		.on("click", function(d) {
+		imageDraw("bin/textMessage.png",200,250,400,400);});
 	
 	var toText = mainBox.append("text")
 		.attr("x", 125).attr("y", 255).text("To: ").attr("font-size", 30);
+	var skillClick = "false";
+	var addSkills = mainBox.append("image")
+		.attr("x", 100).attr("y", 600).attr("height", 200).attr("width", 200).attr("xlink:href", "bin/plusgray.png")
+		.on("click", function(d) {
+		if(skillClick=="false"){d3.select(this).attr("xlink:href", "bin/plusblue.png"); skillClick="true"; drawSkills();}
+		else if(skillClick=="true") {location.href = "send.html"}//d3.select(this).attr("xlink:href", "bin/plusgray.png"); skillClick="false"; drawSkills();}
 		
-	var otherBox = mainBox.append("rect")
-		.attr("x", 100).attr("y", 640).attr("rx", 5).attr("ry", 5)
-		.attr("height", 150).attr("width", width)
-		.attr("fill", "white").attr("stroke", "black").attr("stroke-width", 0.2)
-		.on("mouseover", function(d) {mouseoverChange(d3.select(this))})
-		.on("mouseout", function(d) {mouseoutChange(d3.select(this))});
 		
+		});
+	
+	
+	
+	function drawSkills(){
+		d3.json("skills.json", function(data){
+			//var jsonSkills=data;
+		
+		
+		drawRect(400,650);
+		drawRect(400,675);
+		drawRect(400,700);
+		drawRect(400,725);
+		drawRect(400,750);
+		imageDraw("bin/skill1.png",360,650,20,200);
+		imageDraw("bin/skill2.png",398,675,20,200);
+		imageDraw("bin/skill3.png",391,700,20,200);
+		imageDraw("bin/skill4.png",363,725,20,200);
+		imageDraw("bin/skill5.png",407,750,20,200);
+		
+		/*	later to automatically append skill list - cheat for now
+		var skillImages = mainBox.selectAll("image").data(jsonSkills).enter().append("image");
+		 
+		var skills = skillImages
+			.attr("x", 350)
+			.attr("y", function(d, i) { return +i*100 })
+			.attr("height", 100).attr("width", 400)
+			.attr("xlink:href", function(d) {return d.image});
+			
+		})*/
+	})
+	}
 	var backButton = mainBox.append("image")
-		.attr("x", 55).attr("y", 110).attr("width",35).attr("height", 35)
-		.attr("xlink:href", "bin/back.png")
-		.on("mouseover", function(d) {mouseoverChange(d3.select(this))})
-		.on("mouseout", function(d) {mouseoutChange(d3.select(this))})
-		.on("click", function(d) { location.href = "index.html"});
-
+			.attr("x", 55).attr("y", 110).attr("width",35).attr("height", 35)
+			.attr("xlink:href", "bin/back.png")
+			.on("mouseover", function(d) {mouseoverChange(d3.select(this))})
+			.on("mouseout", function(d) {mouseoutChange(d3.select(this))})
+			.on("click", function(d) { location.href = "index.html"});
+	
+function drawRect(x,y){
+	var tempClicked="true";
+	var backSelect = mainBox.append("rect")
+			.attr("x", x).attr("y",y).attr("width", 220).attr("height",25)
+			.attr("fill", "lightgray").attr("opacity", .5).attr("stroke", "gray")
+			.on("click", function(d) {
+				if(tempClicked=="true"){d3.select(this).attr("fill", "steelblue");tempClicked="false";}
+				else if(tempClicked=="false"){ d3.select(this).attr("fill", "lightgray"); tempClicked="true";}
+			});
+}
+function imageDraw(path, x,y,h,w){
+	var imageSkill = mainBox.append("image")
+		.attr("x", x).attr("y", y).attr("height", h).attr("width", w)
+		.attr("xlink:href", path);
+}
 function mouseoverChange(d){
 d.attr("fill", colour2).attr("opacity", .3);
 }
@@ -65,6 +135,6 @@ d.attr("fill", colour2).attr("opacity", .3);
 function mouseoutChange(d){
 d.attr("fill", colour1).attr("opacity", 1);
 }
-
+})
 //})	
 }

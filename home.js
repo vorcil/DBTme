@@ -41,9 +41,9 @@ var recievedMessages = mainBox.append("image")
 	.on("mouseover", function(d) {mouseoverChange(d3.select(this))})
 	.on("mouseout", function(d) {mouseoutChange(d3.select(this))})
 	.on("click", function(d) { 
-		location.href = "send.html"});		
+		location.href = "recent.html"});		
 
-var recievedMessages = mainBox.append("image")
+var sendMessage = mainBox.append("image")
 	.attr("xlink:href", "bin/sent.png")
 	.attr("x", 100).attr("y", 400).attr("rx", 5).attr("ry", 5)
 	.attr("height", 100).attr("width", width)
@@ -53,7 +53,7 @@ var recievedMessages = mainBox.append("image")
 	.on("click", function(d) { 
 		location.href = "send.html"});	
 
-var recievedMessages = mainBox.append("image")
+var patientList = mainBox.append("image")
 	.attr("xlink:href", "bin/ptlist.png")
 	.attr("x", 100).attr("y", 525).attr("rx", 5).attr("ry", 5)
 	.attr("height", 100).attr("width", width)
@@ -61,9 +61,9 @@ var recievedMessages = mainBox.append("image")
 	.on("mouseover", function(d) {mouseoverChange(d3.select(this))})
 	.on("mouseout", function(d) {mouseoutChange(d3.select(this))})
 	.on("click", function(d) { 
-		location.href = "send.html"});	
+		location.href = "profilepage.html"});	
 		
-var recievedMessages = mainBox.append("image")
+var logacall = mainBox.append("image")
 	.attr("xlink:href", "bin/logacall.png")
 	.attr("x", 100).attr("y", 650).attr("rx", 5).attr("ry", 5)
 	.attr("height", 100).attr("width", width)
@@ -71,7 +71,7 @@ var recievedMessages = mainBox.append("image")
 	.on("mouseover", function(d) {mouseoverChange(d3.select(this))})
 	.on("mouseout", function(d) {mouseoutChange(d3.select(this))})
 	.on("click", function(d) { 
-		location.href = "send.html"});	
+		location.href = "loadacall_1.html"});	
 
 function mouseoverChange(d){
 d.attr("fill", colour2).attr("opacity", .3);
