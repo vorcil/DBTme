@@ -32,7 +32,15 @@ function initializeMessage(){
 		.attr("fill", "white").attr("stroke", "black").attr("stroke-width", 0.2)
 		.on("mouseover", function(d) {mouseoverChange(d3.select(this))})
 		.on("mouseout", function(d) {mouseoutChange(d3.select(this))});
-		
+
+ 
+
+
+
+
+
+
+    
 	console.log("testing patient list");
 	var backButton = mainBox.append("image")
 		.attr("x", 55).attr("y", 110).attr("width",35).attr("height", 35)

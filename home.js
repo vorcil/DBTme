@@ -61,7 +61,7 @@ var patientList = mainBox.append("image")
 	.on("mouseover", function(d) {mouseoverChange(d3.select(this))})
 	.on("mouseout", function(d) {mouseoutChange(d3.select(this))})
 	.on("click", function(d) { 
-		location.href = "profilepage.html"});	
+		location.href = "patientlist.html"});	
 		
 var logacall = mainBox.append("image")
 	.attr("xlink:href", "bin/logacall.png")

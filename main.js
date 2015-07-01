@@ -45,25 +45,41 @@ console.log(jsonCell[0].cellnumber);
 		
 			
 	
-	var message = new Object();
+/*	var message = new Object();
 	message.ToNumber = jsonCell.cellnumber;
 	message.Text = textmessage;
-	$.post("http://dbtsms.azurewebsites.net/api/SMS", message);
+	$.post("http://dbtsms.azurewebsites.net/api/SMS", message);*/
 	
 			
 		
 		
 		
 		});
-	var messageBox = mainBox.append("rect")
+
+    /*Imaging width and height being of an SVG object
+    and rows+Cols of that of an object (using d3 conventionality
+    to assign document.getElementById=('inputbox').value;
+    amazingly adding a third dimension of selection to style='resize: none;' works
+*/
+    
+    var foreign1 = mainBox.append("svg:foreignObject")
+	.attr("width", 600).attr("height", 700).attr("x", 93).attr("y", 300).attr("rx", 20).attr("ry", 20)
+	.style("resize", 'none')
+	.append("xhtml:body")
+	.html("<textarea style='resize: none; font-size: 15pt; border: 1px solid lightgray; outline: none; border-radius: 10px;' id='inputbox' class='foo' rows='13' cols='40' type='text'> Message... </textarea>");
+
+   
+    /*var messageBox = mainBox.append("rect")
 		.attr("x", 100).attr("y", 280).attr("rx", 5).attr("ry", 5)
 		.attr("height", 350).attr("width", width)
 		.attr("fill", "white").attr("stroke", "black").attr("stroke-width", 0.2)
 		.on("mouseover", function(d) {mouseoverChange(d3.select(this))})
 		.on("mouseout", function(d) {mouseoutChange(d3.select(this))})
 		.on("click", function(d) {
-		imageDraw("bin/textMessage.png",200,250,400,400);});
-	
+		imageDraw("bin/textMessage.png",200,250,400,400);});*/
+
+
+    
 	var toText = mainBox.append("text")
 		.attr("x", 125).attr("y", 255).text("To: ").attr("font-size", 30);
 	var skillClick = "false";

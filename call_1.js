@@ -121,8 +121,8 @@ function call(){
 		.text(function(d) {return d.patientName})
 		.attr("class","dropdown-toggle")
 		.attr("font-size", 25);
-	
-	
+
+	    
 	
 	}
 	
