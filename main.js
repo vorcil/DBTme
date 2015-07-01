@@ -66,7 +66,7 @@ console.log(jsonCell[0].cellnumber);
 	.attr("width", 600).attr("height", 700).attr("x", 93).attr("y", 300).attr("rx", 20).attr("ry", 20)
 	.style("resize", 'none')
 	.append("xhtml:body")
-	.html("<textarea style='resize: none; font-size: 15pt; border: 1px solid lightgray; outline: none; border-radius: 10px;' id='inputbox' class='foo' rows='13' cols='40' type='text'> Message... </textarea>");
+	.html("<textarea style='font: Times; resize: none; font-size: 15pt; border: 1px solid lightgray; outline: none; border-radius: 10px;' id='inputbox' class='foo' rows='13' cols='40' type='text'> Message... </textarea>");
 
    
     /*var messageBox = mainBox.append("rect")
@@ -122,27 +122,35 @@ console.log(jsonCell[0].cellnumber);
 		})*/
 	})
 	}
-	var backButton = mainBox.append("image")
-			.attr("x", 55).attr("y", 110).attr("width",35).attr("height", 35)
-			.attr("xlink:href", "bin/back.png")
-			.on("mouseover", function(d) {mouseoverChange(d3.select(this))})
-			.on("mouseout", function(d) {mouseoutChange(d3.select(this))})
-			.on("click", function(d) { location.href = "index.html"});
-	
-function drawRect(x,y){
+    var backButton = mainBox.append("image")
+	.attr("x", 55).attr("y", 110).attr("width",35).attr("height", 35)
+	.attr("xlink:href", "bin/back.png")
+	.on("mouseover", function(d) {mouseoverChange(d3.select(this))})
+	.on("mouseout", function(d) {mouseoutChange(d3.select(this))})
+	.on("click", function(d) { location.href = "index.html"});
+  
+    function drawRect(x,y){
 	var tempClicked="true";
 	var backSelect = mainBox.append("rect")
 			.attr("x", x).attr("y",y).attr("width", 220).attr("height",25)
 			.attr("fill", "lightgray").attr("opacity", .5).attr("stroke", "gray")
 			.on("click", function(d) {
 				if(tempClicked=="true"){d3.select(this).attr("fill", "steelblue");tempClicked="false";}
-				else if(tempClicked=="false"){ d3.select(this).attr("fill", "lightgray"); tempClicked="true";}
+			    else if(tempClicked=="false"){ d3.select(this).attr("fill", "lightgray"); tempClicked="true";}
+			   
+
+			    if(d3.select(this).attr("y")==675){
+				var temp=document.getElementById('inputbox').value;
+				foreign1.html("<textarea style='font: Times; resize: none; font-size: 15pt; border: 1px solid lightgray; outline: none; border-radius: 10px;' id='inputbox' class='foo' rows='13' cols='40' type='text'>"+ temp + "Validation - it’s ok that I hurt and want to feel better. Reassurance - I can handle this pain, even though it hurts and I don’t like it. Perspective taking: I’ve had bad days like this before, and my record of making it through them is 100%. I can also remember my better days, and know I’m not always hurting this much."+ " </textarea>");
+
+			    };
 			});
 }
 function imageDraw(path, x,y,h,w){
 	var imageSkill = mainBox.append("image")
-		.attr("x", x).attr("y", y).attr("height", h).attr("width", w)
-		.attr("xlink:href", path);
+	    .attr("x", x).attr("y", y).attr("height", h).attr("width", w)
+	    .attr("xlink:href", path);
+    
 }
 function mouseoverChange(d){
 d.attr("fill", colour2).attr("opacity", .3);
